@@ -1,0 +1,14 @@
+# Deploy only the real site (index.html, cars.html, assets/).
+# Everything below is unrelated plugin repos, dev/scratch, or docs.
+caveman/
+headroom/
+IMG/
+.claude/
+mobile.html
+tune.html
+preview-mobile.bat
+CLAUDE.md
+DESIGN.md
+HANDOFF.md
+PRODUCT.md
+NEXT_SESSION_PROMPT.md

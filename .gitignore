@@ -1,0 +1,25 @@
+# Tooling / system
+.vercel/
+.claude/
+.codex/
+node_modules/
+
+# Local backup + scratch (never publish)
+_backup-pre-scroll-change/
+headroom/
+IMG/
+tmp/
+*.bat
+tune.html
+mobile.html
+
+# Unrelated plugin repo living in this folder
+caveman/
+
+# Internal working docs (keep out of the public repo)
+CLAUDE.md
+DESIGN.md
+HANDOFF.md
+PRODUCT.md
+NEXT_SESSION_PROMPT.md
+AGENTS.md

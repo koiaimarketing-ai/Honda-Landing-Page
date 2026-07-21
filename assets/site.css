@@ -1,0 +1,2179 @@
+/* ============================================================
+   HONDA · Advisor — shared styles for index.html and cars.html
+   Dark cinematic system: night surfaces, hairline borders,
+   sharp 0px corners, single red accent #E40521.
+============================================================ */
+
+:root { --ease-premium: cubic-bezier(.16,1,.3,1); }
+
+html { background: #070809; scroll-behavior: smooth; }
+body {
+  background: #070809;
+  color: rgba(255,255,255,0.78);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: #E40521; color: #fff; }
+
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ---------- Surfaces ---------- */
+.card {
+  /* Translucent frosted spatial surface — you see the background
+     (section colour + a soft, blurred trace of the red thread) through
+     it. Dark tint keeps text readable; backdrop-blur frosts whatever is
+     behind so the thread reads as a diffuse glow, not sharp lines.
+     Sharp 0px corners kept. */
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.01) 34%, rgba(255,255,255,0) 60%),
+    rgba(11,13,18,0.70);
+  -webkit-backdrop-filter: blur(11px);
+          backdrop-filter: blur(11px);
+  border: 1px solid rgba(255,255,255,0.11);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    0 26px 52px -30px rgba(0,0,0,0.6);
+}
+
+/* Section index mark: short red keyline above major headlines */
+.keyline::before {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: #E40521;
+  margin-bottom: 20px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  padding: 15px 26px;
+  transition: background-color .3s var(--ease-premium),
+              border-color .3s var(--ease-premium),
+              color .3s var(--ease-premium),
+              transform .2s var(--ease-premium);
+}
+.btn:active { transform: scale(0.975); }
+.btn .material-symbols-outlined {
+  font-size: 18px;
+  transition: transform .3s var(--ease-premium);
+}
+.btn:hover .material-symbols-outlined { transform: translateX(3px); }
+
+.btn-red { background: #E40521; color: #fff; }
+.btn-red:hover { background: #B80016; }
+
+.btn-ghost {
+  background: transparent;
+  color: rgba(255,255,255,0.85);
+  border: 1px solid rgba(255,255,255,0.16);
+}
+.btn-ghost:hover { border-color: rgba(228,5,33,0.55); color: #fff; }
+
+/* Outline WhatsApp CTA: dark transparent, red hairline, subtle red
+   fill + glow on hover. Sharp corners. */
+.btn-wa {
+  background: rgba(228,5,33,0.05);
+  color: #fff;
+  border: 1px solid #E40521;
+}
+.btn-wa:hover {
+  background: rgba(228,5,33,0.16);
+  box-shadow: 0 0 26px -6px rgba(228,5,33,0.55);
+}
+.btn-wa .wa-glyph { width: 18px; height: 18px; flex: 0 0 auto; }
+
+/* Hero trust stats: quiet, no cards. 2x2 on mobile; inline row with
+   hairline separators from sm up. */
+.hero-stats { display: grid; grid-template-columns: repeat(2, max-content); gap: 16px 30px; }
+.hero-stat { padding: 0; }
+@media (min-width: 640px) {
+  .hero-stats { display: flex; gap: 0; }
+  .hero-stat { padding: 0 20px; }
+  .hero-stat:first-child { padding-left: 0; }
+  .hero-stat + .hero-stat { border-left: 1px solid rgba(255,255,255,0.12); }
+}
+.hero-stat b {
+  display: block;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 14.5px;
+  color: #fff;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+}
+.hero-stat span { display: block; margin-top: 2px; font-size: 11px; color: rgba(255,255,255,0.55); }
+
+/* ---------- Focus ---------- */
+a, button, input, select, textarea, summary { outline: none; }
+a:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible, summary:focus-visible {
+  outline: 2px solid #E40521;
+  outline-offset: 2px;
+}
+
+/* ---------- Forms ---------- */
+.field {
+  width: 100%;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.09);
+  color: rgba(255,255,255,0.85);
+  font-size: 15px;
+  padding: 13px 14px;
+  transition: border-color .3s var(--ease-premium), background-color .3s var(--ease-premium);
+}
+.field::placeholder { color: rgba(255,255,255,0.45); }
+.field:hover { border-color: rgba(255,255,255,0.18); }
+.field:focus { border-color: rgba(228,5,33,0.6); background: rgba(255,255,255,0.045); }
+.field[aria-invalid="true"] { border-color: rgba(228,5,33,0.8); }
+select.field {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.55)' stroke-width='1.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+}
+select.field option { background: #12151B; color: rgba(255,255,255,0.85); }
+input[type=number].field { appearance: textfield; -moz-appearance: textfield; }
+input[type=number].field::-webkit-outer-spin-button,
+input[type=number].field::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+/* Tenure segmented control */
+.seg { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(255,255,255,0.09); }
+.seg button {
+  padding: 12px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  background: transparent;
+  transition: background-color .3s var(--ease-premium), color .3s var(--ease-premium);
+}
+.seg button + button { border-left: 1px solid rgba(255,255,255,0.09); }
+.seg button[aria-pressed="true"] { background: #E40521; color: #fff; }
+.seg button:not([aria-pressed="true"]):hover { color: rgba(255,255,255,0.85); }
+
+/* ---------- Model preview cards (homepage) ---------- */
+.model-card {
+  display: flex;
+  flex-direction: column;
+  transition: transform .45s var(--ease-premium), border-color .45s var(--ease-premium);
+}
+.model-card:hover { transform: translateY(-4px); border-color: rgba(228,5,33,0.4); }
+.cta-chevron { transition: transform .3s var(--ease-premium); }
+a:hover .cta-chevron, button:hover .cta-chevron { transform: translateX(3px); }
+
+/* Split ledger footer on preview cards */
+.card-actions { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(255,255,255,0.09); }
+.card-actions > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 14px 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: color .3s var(--ease-premium), background-color .3s var(--ease-premium);
+}
+.card-actions > a + a { border-left: 1px solid rgba(255,255,255,0.09); }
+.card-actions .act-specs { color: rgba(255,255,255,0.72); }
+.card-actions .act-specs:hover { color: #fff; background: rgba(255,255,255,0.03); }
+.card-actions .act-wa { color: #E40521; }
+.card-actions .act-wa:hover { background: rgba(228,5,33,0.08); }
+
+/* ---------- Image frames ----------
+   Real <img> on top, CSS placeholder behind. Drop the real file
+   into assets/ and it replaces the placeholder automatically. */
+.img-frame { position: relative; overflow: hidden; background: #0B0D11; }
+.img-frame img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease-premium);
+}
+.img-hover:hover .img-frame img { transform: scale(1.03); }
+.img-frame .ph { position: absolute; inset: 0; }
+/* opacity (not display:none): display:none blocks loading="lazy" images from
+   ever fetching, which deadlocks the auto-activate mechanism (onload can never
+   fire to clear img-missing). Keep the box, just make it invisible. */
+.img-frame.img-missing img { opacity: 0; }
+/* Once the real image loads (img-missing removed), drop the placeholder
+   so it never covers the photo. */
+.img-frame:not(.img-missing) .ph { display: none; }
+
+/* Depth slab: subtle offset back-panel for hero-weight single elements
+   (advisor card, final CTA) — cinematic foreground/midground separation.
+   Used sparingly, NOT on repeated card grids. */
+/* FAQ advisor image: transparent cutout, bottom-right. Only a soft bottom
+   fade where the body is cropped, so he melts into the section (no box). */
+.faq-hakim {
+  position: absolute; right: 0; bottom: 0;
+  height: 100%; max-height: none; width: auto; max-width: none;
+  object-fit: contain; object-position: bottom right;
+  transform: translateX(18px);
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 12%);
+          mask-image: linear-gradient(to top, transparent 0%, #000 12%);
+  pointer-events: none; user-select: none;
+}
+
+.depth-slab { position: relative; }
+/* Two short L-brackets, dim, STUCK to the card but SHORTER than its edges:
+   - ::before = top-right: a cap on the card's right edge (lower than the top)
+     + a short arm running down, offset 18px out.
+   - ::after  = bottom-left: a cap on the card's bottom edge + a short arm
+     running right, offset 18px out. */
+/* Depth-slab corner bracket (user's drawing): one L on the RIGHT + BOTTOM,
+   offset outside the card. Long right arm (+ short LEFT cap at its top) +
+   long bottom arm (+ short UP cap at its left end), meeting bottom-right.
+   Tunable via the CSS vars below (live tuner writes these on #tune). */
+.depth-slab {
+  --ds-offset: 15px;   /* gap outside the card (right + bottom) */
+  --ds-inset: 4%;      /* how far arms start from the far corners */
+  --ds-cap: 16px;      /* cap (return) length */
+  --ds-alpha: 0.11;    /* line opacity */
+  --ds-thick: 1px;     /* line thickness */
+}
+.depth-slab::before,
+.depth-slab::after {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  border-style: solid; border-color: rgba(255,255,255,var(--ds-alpha)); border-width: 0;
+}
+.depth-slab::before {                 /* right arm + top cap */
+  top: var(--ds-inset); right: calc(-1 * var(--ds-offset)); bottom: calc(-1 * var(--ds-offset)); width: var(--ds-cap);
+  border-top-width: var(--ds-thick); border-right-width: var(--ds-thick);
+}
+.depth-slab::after {                  /* bottom arm + bottom-left cap */
+  left: var(--ds-inset); right: calc(-1 * var(--ds-offset)); bottom: calc(-1 * var(--ds-offset)); height: var(--ds-cap);
+  border-left-width: var(--ds-thick); border-bottom-width: var(--ds-thick);
+}
+
+/* ---------- Meet-Hakim advisor card ----------
+   Compact advisor card: top label, framed photo area, name/title, live
+   status chip, tight info rows, services line, full-width outlined CTA.
+   Photo swaps in via assets/advisor-hakim-portrait.jpg. Sharp 0px corners. */
+.advisor-card {
+  width: 100%; max-width: 420px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 28px 80px rgba(0,0,0,0.30);
+}
+
+/* Top "YOUR ADVISOR" label with red square */
+.advisor-eyebrow {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-family: 'Hanken Grotesk', sans-serif; font-weight: 700;
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+.advisor-eyebrow::before { content: ""; width: 9px; height: 9px; background: #E40521; }
+
+/* Framed photo area — real portrait covers it; dark cinematic fallback
+   until assets/advisor-hakim-portrait.jpg is dropped in. */
+.advisor-visual {
+  position: relative; flex: 1 1 auto; min-height: 280px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  background:
+    radial-gradient(120% 75% at 50% 8%, rgba(255,255,255,0.05), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.006)), #0B0D11;
+}
+.advisor-visual img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center 22%;
+  filter: brightness(0.96) contrast(1.03);
+}
+.advisor-visual.img-missing img { opacity: 0; }
+/* Fallback caption (no icon, no badge) — only visible before the photo loads */
+.advisor-visual .ph {
+  position: absolute; inset: 0;
+  display: flex; align-items: flex-end; padding: 18px;
+}
+.advisor-visual:not(.img-missing) .ph { display: none; }
+.advisor-visual .ghost {
+  font-family: 'Hanken Grotesk', sans-serif; font-weight: 800;
+  font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: rgba(255,255,255,0.22);
+}
+
+/* Live status chip: green dot */
+.advisor-chip {
+  display: inline-flex; align-items: center; gap: 9px;
+  border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.02);
+  padding: 8px 13px; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.8);
+}
+.advisor-chip .dot { width: 8px; height: 8px; border-radius: 999px; background: #22C55E; }
+@media (prefers-reduced-motion: no-preference) {
+  .advisor-chip .dot { animation: advisorPulse 2.4s var(--ease-premium) infinite; }
+}
+@keyframes advisorPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+  70%  { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
+
+/* Services line */
+.advisor-services {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  font-size: 13px; color: rgba(255,255,255,0.6);
+}
+.advisor-services .sep { color: #E40521; }
+
+/* Full-width outlined card CTA */
+.advisor-cta {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; border: 1px solid rgba(255,255,255,0.14);
+  padding: 15px 18px;
+  font-family: 'Hanken Grotesk', sans-serif; font-weight: 700; font-size: 14px;
+  color: #E40521;
+  transition: border-color .3s var(--ease-premium), background-color .3s var(--ease-premium), color .3s var(--ease-premium);
+}
+.advisor-cta:hover { border-color: rgba(228,5,33,0.5); background: rgba(228,5,33,0.06); color: #fff; }
+.advisor-cta:hover .cta-chevron { transform: translateX(3px); }
+
+/* Studio placeholder: ghost model name + red floor line */
+.ph-studio {
+  display: flex; align-items: center; justify-content: center;
+  background:
+    radial-gradient(90% 60% at 50% 100%, rgba(255,255,255,0.05), transparent 60%),
+    #0B0D11;
+}
+.ph-studio::after {
+  content: "";
+  position: absolute; left: 12%; right: 12%; bottom: 18%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(228,5,33,0.5), transparent);
+}
+.ph-studio .ghost {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.4rem, 7vw, 3.6rem);
+  letter-spacing: -0.02em;
+  color: rgba(255,255,255,0.07);
+  transform: translateY(-8%);
+  user-select: none;
+}
+.ph-studio .ghost-sm { font-size: clamp(1.4rem, 3vw, 2rem); }
+.ph-studio .ghost-xs { font-size: 0.8rem; letter-spacing: 0; }
+
+/* Buyer-path card image strip: short cinematic crop, blends into the card */
+.strip-ph {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(130% 95% at 50% 118%, rgba(255,255,255,0.07), transparent 56%),
+    #0B0D11;
+}
+.strip-ph::after {
+  content: "";
+  position: absolute; left: 10%; right: 10%; bottom: 24%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(228,5,33,0.45), transparent);
+}
+.strip-fade {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(7,8,9,0.55), transparent 38%, transparent 52%, rgba(9,11,14,0.94) 97%);
+}
+
+/* Model-card strip content: dim theme icon + index tag, so the top
+   area reads as an intentional category card, not an empty box. */
+.model-strip-icon {
+  position: absolute; right: 6%; top: 50%; transform: translateY(-50%);
+  font-size: clamp(60px, 8vw, 88px);
+  color: rgba(255,255,255,0.07);
+  font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 48;
+  pointer-events: none;
+}
+.model-strip-idx {
+  position: absolute; left: 16px; top: 13px;
+  font-family: 'Hanken Grotesk', sans-serif; font-weight: 700;
+  font-size: 12px; letter-spacing: 0.05em;
+  color: rgba(228,5,33,0.85);
+}
+
+/* ---------- Hero: featured-model phone mockup ----------
+   A real smartphone device frame. The phone is the one surface
+   allowed rounding because it represents hardware. Normal UI
+   stays sharp 0px. */
+.hero-phone { position: relative; width: min(340px, 86vw); }
+
+.phone-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 18.6;
+  padding: 9px;
+  border-radius: 42px;
+  background: linear-gradient(155deg, #2a2e36 0%, #14171d 42%, #0b0d11 100%);
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.14),
+    inset 0 0 0 1px rgba(0,0,0,0.5),
+    0 54px 110px -44px rgba(0,0,0,0.95);
+}
+/* Glass reflection sweep across the device */
+.phone-frame::after {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: 42px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.10), transparent 30%, transparent 82%, rgba(255,255,255,0.05));
+  pointer-events: none;
+}
+
+.phone-screen {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 33px;
+  overflow: hidden;
+  background: #0B0D11;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+/* Speaker slot + camera dot */
+.phone-speaker {
+  position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+  width: 58px; height: 5px; border-radius: 999px;
+  background: rgba(255,255,255,0.16);
+  z-index: 3;
+}
+.phone-cam {
+  position: absolute; top: 11px; left: calc(50% + 42px);
+  width: 7px; height: 7px; border-radius: 999px;
+  background: radial-gradient(circle at 35% 35%, rgba(150,155,165,0.6), rgba(0,0,0,0.9));
+  z-index: 3;
+}
+
+/* Car stage: spacer inside the screen. It only shows the dark studio
+   fallback scene; the real car renders as the breakout layer below. */
+.phone-car-stage { position: relative; flex: 1 1 auto; min-height: 0; overflow: hidden; }
+.phone-car-stage .img-frame { position: absolute; inset: 0; }
+
+/* Breakout car: sits ABOVE the device and spills past both bezel
+   edges, like a featured-model presentation. Floats with the phone. */
+.phone-frame { z-index: 1; }
+.hero-car {
+  position: absolute;
+  left: 50%;
+  top: 13%;
+  width: 124%;
+  transform: translateX(-50%);
+  z-index: 2;
+  pointer-events: none;
+}
+@media (min-width: 1024px) {
+  .hero-car { width: 150%; top: 11%; }
+}
+.hero-car img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 26px 30px rgba(0,0,0,0.55)) brightness(0.95) contrast(1.02);
+  /* lower body melts into the dark scene */
+  -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent 99%);
+  mask-image: linear-gradient(180deg, #000 82%, transparent 99%);
+}
+/* soft dark gradient halo behind the car so it sits in the scene */
+.hero-car::before {
+  content: "";
+  position: absolute;
+  left: 8%; right: 8%; top: 14%; bottom: 10%;
+  background: radial-gradient(58% 62% at 50% 46%, rgba(0,0,0,0.5), transparent 72%);
+  z-index: -1;
+  filter: blur(6px);
+}
+/* ground contact: dark puddle with a faint red brake-light reflection */
+.hero-car::after {
+  content: "";
+  position: absolute;
+  left: 14%; right: 14%; bottom: 3%;
+  height: 13%;
+  background:
+    radial-gradient(46% 100% at 50% 40%, rgba(0,0,0,0.6), transparent 72%),
+    radial-gradient(38% 120% at 62% 55%, rgba(228,5,33,0.16), transparent 70%);
+  z-index: -1;
+  filter: blur(1px);
+}
+
+/* Car placeholder inside the mockup: dark studio area with a soft
+   silhouette hint, red floor light, and reflection. Replaced
+   automatically when assets/model-city-sedan-studio.png exists. */
+.ph-car {
+  background:
+    radial-gradient(80% 90% at 50% 0%, rgba(255,255,255,0.05), transparent 55%),
+    radial-gradient(120% 60% at 50% 100%, rgba(228,5,33,0.10), transparent 60%),
+    #0B0D11;
+}
+.ph-car::before {
+  content: "";
+  position: absolute; left: 14%; right: 14%; top: 30%; bottom: 34%;
+  background: radial-gradient(60% 100% at 50% 100%, rgba(255,255,255,0.07), rgba(255,255,255,0.015) 60%, transparent);
+  border-radius: 48% 52% 8% 8% / 72% 78% 10% 10%;
+  filter: blur(2px);
+}
+.ph-car::after {
+  content: "";
+  position: absolute; left: 10%; right: 10%; bottom: 26%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(228,5,33,0.5), transparent);
+  box-shadow: 0 12px 26px 6px rgba(228,5,33,0.10);
+}
+
+/* ---------- Hero: mobile-only cinematic car stage (<768px) ----------
+   On phones the phone-listing mockup is replaced by a large, clean Honda
+   showcase: brand badge + big low-sitting car + one line, CTA below.
+   Tablet/desktop (>=768px) keep the phone mockup untouched. */
+@media (max-width: 767px) {
+  .hero-stage-m {
+    position: relative;
+    width: 94vw;
+    margin-left: calc(50% - 47vw);
+    aspect-ratio: 1.56;
+    overflow: hidden;
+    background:
+      radial-gradient(72% 58% at 50% 30%, rgba(255,255,255,0.07), transparent 62%),
+      radial-gradient(120% 84% at 50% 116%, rgba(228,5,33,0.16), transparent 60%),
+      linear-gradient(180deg, #0D1016 0%, #090B0F 60%, #060708 100%);
+    border: 1px solid rgba(255,255,255,0.07);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.06),
+      0 40px 84px -46px rgba(0,0,0,0.85),
+      0 0 84px -26px rgba(228,5,33,0.28);
+  }
+
+  .hero-stage-badge {
+    position: absolute; top: 15px; left: 15px; z-index: 3;
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.82);
+  }
+  .hero-stage-badge i { font-style: normal; color: #E40521; }
+
+  .hero-stage-ph {
+    position: absolute; inset: 0; z-index: 1;
+    background: radial-gradient(58% 40% at 50% 80%, rgba(255,255,255,0.04), transparent 60%);
+  }
+
+  .hero-stage-car {
+    position: absolute; left: 50%; bottom: -42px;
+    width: 104%; transform: translateX(-50%);
+    z-index: 2; pointer-events: none;
+  }
+  .hero-stage-car img {
+    display: block; width: 100%; height: auto;
+    filter: drop-shadow(0 32px 36px rgba(0,0,0,0.62)) brightness(1.05) contrast(1.07) saturate(1.02);
+    -webkit-mask-image: linear-gradient(180deg, #000 86%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 86%, transparent 100%);
+  }
+  .hero-stage-car::after {
+    content: ""; position: absolute;
+    left: 12%; right: 12%; bottom: -2%; height: 16%; z-index: -1;
+    background:
+      radial-gradient(48% 100% at 50% 40%, rgba(0,0,0,0.65), transparent 72%),
+      radial-gradient(40% 120% at 58% 55%, rgba(228,5,33,0.18), transparent 70%);
+    filter: blur(2px);
+  }
+
+  .hero-stage-line {
+    margin-top: 8px;
+    font-size: 14px; line-height: 1.55;
+    color: rgba(255,255,255,0.66);
+    max-width: 42ch;
+  }
+
+  /* Tighten stage -> CTA gap on mobile so the primary CTA sits higher. */
+  .hero-cta { margin-top: 20px !important; }
+
+  /* trust stats: a little more breathing room under the hero CTA on mobile */
+  .hero-stats { margin-top: 46px !important; }
+
+  /* Sticky mobile CTA reveals only after the hero (toggled in site.js),
+     so it stops crowding the car stage and competing with the hero CTA.
+     Gated on html.js so no-JS keeps the bar visible by default. */
+  html.js .wa-sticky {
+    transform: translateY(105%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform .55s cubic-bezier(.16,1,.3,1), opacity .4s ease;
+  }
+  html.js .wa-sticky.is-shown {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Soft diagonal red glow wash across the whole hero (headline -> car).
+     Soft glow only, NOT sharp lines; screen-blend over the dark bg. Kept
+     low-alpha so the headline and CTA stay readable. */
+  .hero-red-wash {
+    position: absolute;
+    inset: -20%;
+    z-index: 2;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    background:
+      linear-gradient(144deg,
+        transparent 36%,
+        rgba(228,5,33,0.06) 46%,
+        rgba(228,5,33,0.15) 50%,
+        rgba(228,5,33,0.06) 54%,
+        transparent 64%);
+    filter: blur(24px);
+    animation: heroStreak 9s ease-in-out infinite alternate;
+  }
+
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  html.js .wa-sticky { transition: none; }
+  .hero-red-wash { animation: none; }
+}
+
+/* Subtle diagonal drift for the mobile hero red streak (mobile-only element). */
+@keyframes heroStreak {
+  from { transform: translate(-3%, 2%); }
+  to   { transform: translate(3%, -2%); }
+}
+
+/* Red light trail + glow behind the hero visual */
+.hero-trail { filter: blur(2.5px); }
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .phone-float { animation: phoneFloat 7s ease-in-out infinite; }
+  .hero-glow { animation: glowDrift 14s ease-in-out infinite alternate; }
+}
+@keyframes phoneFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes glowDrift {
+  from { transform: translate(0, 0); opacity: 0.9; }
+  to { transform: translate(-26px, 18px); opacity: 0.65; }
+}
+
+/* ---------- Nav ---------- */
+/* ---------- Floating glass navigation ----------
+   No full-width bar: the sticky header wrapper is transparent and
+   click-through; only the isolated pills catch the pointer. */
+.nav-float { pointer-events: none; }
+.nav-float .nav-pill, .nav-float .nav-dd-panel { pointer-events: auto; }
+
+.nav-float .nav-brand-mark, .nav-float .nav-trigger { pointer-events: auto; }
+
+/* Minimal chrome: plain wordmark + one MENU trigger. The menu itself is a scene. */
+.nav-brand-mark { text-shadow: 0 2px 18px rgba(0,0,0,0.8); }
+.nav-trigger {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 10px 18px;
+  font: inherit; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  background: rgba(8,10,13,0.55);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 999px;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  cursor: pointer;
+  transition: border-color .3s var(--ease-premium), background-color .3s var(--ease-premium),
+              box-shadow .3s var(--ease-premium);
+}
+.nav-trigger:hover { border-color: rgba(228,5,33,0.5); box-shadow: 0 0 22px -10px rgba(228,5,33,0.6); }
+.nav-trigger-icon { position: relative; width: 18px; height: 10px; display: inline-block; }
+.nav-trigger-icon i {
+  position: absolute; left: 0; right: 0; height: 2px; background: currentColor;
+  transition: transform .4s var(--ease-premium), top .4s var(--ease-premium);
+}
+.nav-trigger-icon i:first-child { top: 0; }
+.nav-trigger-icon i:last-child { top: 8px; }
+.nav-trigger.open .nav-trigger-icon i:first-child { top: 4px; transform: rotate(45deg); }
+.nav-trigger.open .nav-trigger-icon i:last-child { top: 4px; transform: rotate(-45deg); }
+
+/* ---------- Fullscreen showroom menu ---------- */
+body.menu-open { overflow: hidden; }
+.menu-overlay {
+  position: fixed; inset: 0; z-index: 60;
+  background: rgba(5,6,8,0.96);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 96px clamp(24px, 8vw, 120px) 56px;
+  opacity: 0;
+  transition: opacity .45s var(--ease-premium);
+}
+.menu-overlay.open { opacity: 1; }
+.menu-close {
+  position: absolute; top: 24px; right: clamp(24px, 8vw, 120px); z-index: 3;
+  width: 44px; height: 44px; display: grid; place-items: center;
+  color: rgba(255,255,255,0.88); background: rgba(8,10,13,0.55);
+  border: 1px solid rgba(255,255,255,0.16); border-radius: 0; cursor: pointer;
+}
+.menu-close:hover { border-color: rgba(228,5,33,0.58); color: #fff; }
+.menu-close .material-symbols-outlined { font-size: 20px; }
+/* Ambient red field behind the type: slow drift, echoes the shader mood. */
+.menu-glow {
+  position: absolute; inset: -10%;
+  pointer-events: none;
+  background:
+    radial-gradient(50% 42% at 78% 68%, rgba(228,5,33,0.17), transparent 65%),
+    radial-gradient(38% 32% at 12% 18%, rgba(228,5,33,0.09), transparent 60%);
+  filter: blur(22px);
+  animation: menu-glow-drift 16s ease-in-out infinite alternate;
+}
+@keyframes menu-glow-drift {
+  from { transform: translate3d(0,0,0); }
+  to   { transform: translate3d(-2.5%, 2%, 0) scale(1.05); }
+}
+/* Hover imagery: the matching car ghosts in behind the type. */
+.menu-imgs img {
+  position: absolute; right: 5%; top: 50%;
+  width: min(46vw, 640px); aspect-ratio: 16 / 10; object-fit: cover;
+  transform: translateY(-50%) scale(1.04);
+  opacity: 0;
+  transition: opacity .5s var(--ease-premium), transform .9s var(--ease-premium);
+  pointer-events: none;
+  /* Feather all edges so the image melts into the black instead of showing a frame */
+  -webkit-mask-image: radial-gradient(78% 82% at 58% 50%, #000 38%, transparent 84%);
+          mask-image: radial-gradient(78% 82% at 58% 50%, #000 38%, transparent 84%);
+}
+.menu-imgs img.show { opacity: 0.38; transform: translateY(-50%) scale(1); }
+/* Cars reveal ~20% larger; radial edge fade + a dedicated bottom fade so no
+   frame edge (esp. the bottom) shows — it melts fully into the black. */
+.menu-imgs img[data-menu-img="cars"] {
+  width: min(55.2vw, 768px);
+  -webkit-mask-image: radial-gradient(82% 84% at 63% 48%, #000 16%, transparent 76%), linear-gradient(to bottom, #000 64%, transparent 90%);
+  -webkit-mask-composite: source-in;
+          mask-image: radial-gradient(82% 84% at 63% 48%, #000 16%, transparent 76%), linear-gradient(to bottom, #000 64%, transparent 90%);
+          mask-composite: intersect;
+}
+.menu-links { position: relative; z-index: 2; display: flex; flex-direction: column; }
+.menu-link {
+  width: fit-content;
+  position: relative;
+  font-family: 'Hanken Grotesk', sans-serif; font-weight: 800;
+  letter-spacing: -0.03em; line-height: 1.06;
+  font-size: clamp(2.6rem, 8vw, 5.5rem);
+  color: rgba(255,255,255,0.92);
+  padding: 8px 0;
+  transition: color .21s var(--ease-premium), transform .315s var(--ease-premium);
+}
+.menu-link:hover { color: #E40521; transform: translateX(16px); }
+.menu-link.is-current { padding-left: 34px; }
+.menu-link.is-current::before {
+  content: ""; position: absolute; left: 0; top: 50%;
+  width: 22px; height: 3px; background: #E40521; transform: translateY(-50%);
+}
+/* Staggered line reveal on open */
+.menu-overlay .menu-link { opacity: 0; transform: translateY(26px); }
+.menu-overlay.open .menu-link {
+  opacity: 1; transform: none;
+  transition: opacity .385s var(--ease-premium), transform .42s var(--ease-premium), color .21s var(--ease-premium);
+}
+/* Stagger the fade-in only (opacity); keep transform/color instant so hover
+   in AND the return-to-place have no lag. Order: opacity, transform, color. */
+.menu-overlay.open .menu-link:nth-child(1) { transition-delay: .056s, 0s, 0s; }
+.menu-overlay.open .menu-link:nth-child(2) { transition-delay: .112s, 0s, 0s; }
+.menu-overlay.open .menu-link:nth-child(3) { transition-delay: .168s, 0s, 0s; }
+.menu-overlay.open .menu-link:nth-child(4) { transition-delay: .224s, 0s, 0s; }
+.menu-overlay.open .menu-link:hover { transform: translateX(16px); transition-delay: 0s; }
+.menu-meta {
+  position: relative; z-index: 2;
+  margin-top: clamp(28px, 6vh, 64px);
+  display: flex; flex-wrap: wrap; gap: 10px 28px;
+  font-size: 13px; color: rgba(255,255,255,0.5);
+}
+@media (max-width: 767px) {
+  .menu-overlay { padding: 88px 24px 40px; }
+  .menu-close { top: 20px; right: 24px; }
+  .menu-imgs { display: none; }
+  .menu-link { font-size: clamp(2.3rem, 11vw, 3.2rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-overlay, .menu-overlay .menu-link { transition: none; }
+  .menu-overlay .menu-link { opacity: 1; transform: none; }
+  .menu-glow { animation: none; }
+  .menu-imgs img { transition: opacity .2s linear; }
+  .nav-trigger-icon i { transition: none; }
+}
+
+/* ---------- FAQ ---------- */
+details { border-bottom: 1px solid rgba(255,255,255,0.09); }
+details summary { list-style: none; cursor: pointer; }
+details summary::-webkit-details-marker { display: none; }
+details .faq-icon { transition: transform .4s var(--ease-premium); }
+details[open] .faq-icon { transform: rotate(45deg); }
+/* Faq5-style dropdown: hover highlight + smooth JS height animation, single-open.
+   The answer height is tweened in JS (measured scrollHeight) so BOTH open and
+   close glide instead of snapping. Under JS the panel starts collapsed. */
+.faq-q { transition: color .2s var(--ease-premium); }
+.faq-q:hover { color: #E40521; }
+.faq-q:hover .faq-icon { color: #E40521; }
+html.js .faq-item .faq-a {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  will-change: height;
+  transition: height .42s var(--ease-premium), opacity .3s var(--ease-premium);
+}
+
+/* ---------- Model accordion (cars page) ---------- */
+.acc-item {
+  position: relative;
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.09);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+  transition: border-color .45s var(--ease-premium), box-shadow .45s var(--ease-premium);
+}
+/* Open state: thin dark border stays; a subtle red top edge + faint glow mark
+   the open card instead of a full red outline (was too loud / "debug selected"). */
+.acc-item.open {
+  border-color: rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.05);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06),
+              0 34px 80px -46px rgba(0,0,0,0.9),
+              0 0 40px -14px rgba(228,5,33,0.30);
+}
+.acc-item.open::before {
+  content: "";
+  position: absolute;
+  top: -1px; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 2%, rgba(228,5,33,0.85), transparent 98%);
+  pointer-events: none;
+}
+.acc-item:not(.open):hover { border-color: rgba(228,5,33,0.3); }
+
+.acc-head {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 132px 1fr auto;
+  gap: 18px;
+  align-items: center;
+  text-align: left;
+  padding: 14px 18px 14px 14px;
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  .acc-head { grid-template-columns: 200px 1.4fr 1fr auto; gap: 26px; padding: 16px 26px 16px 16px; }
+}
+.acc-chevron { transition: transform .5s var(--ease-premium), color .3s var(--ease-premium); }
+.acc-item.open .acc-chevron { transform: rotate(180deg); color: #E40521; }
+.acc-head:hover .acc-chevron { color: #fff; }
+
+/* Head hover: gentle image push-in; vignette grounds the thumb in the card */
+.acc-head .img-frame img { transition: transform 1.2s var(--ease-premium), opacity .6s var(--ease-premium); }
+.acc-head:hover .img-frame img { transform: scale(1.04); }
+.acc-head .img-frame::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(7,8,9,0.38));
+  pointer-events: none;
+}
+
+/* Collapsible body: 0fr -> 1fr grid row animation.
+   Collapsed state only exists under html.js, so content stays
+   visible when JavaScript fails. */
+html.js .acc-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .65s var(--ease-premium);
+}
+html.js .acc-body > .acc-inner {
+  overflow: hidden;
+  min-height: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  /* visibility removes collapsed panel links from tab order and
+     the accessibility tree; delayed on close so the fade finishes */
+  visibility: hidden;
+  transition: opacity .45s var(--ease-premium), transform .55s var(--ease-premium), visibility 0s linear .65s;
+}
+html.js .acc-item.open .acc-body { grid-template-rows: 1fr; }
+html.js .acc-item.open .acc-body > .acc-inner {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity .45s var(--ease-premium) .12s, transform .6s var(--ease-premium) .1s, visibility 0s;
+}
+
+/* Variant chips */
+.vchip {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  border: 1px solid rgba(255,255,255,0.09);
+  background: rgba(255,255,255,0.02);
+  padding: 10px 14px;
+  min-width: 108px;
+}
+.vchip b {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 13.5px;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+.vchip span { font-size: 11.5px; color: rgba(255,255,255,0.55); }
+.vchip.vchip-key { border-color: rgba(228,5,33,0.45); }
+
+/* Variant chips are real buttons on cars.html: click selects the variant and
+   swaps the model's header price. Active = red keyline + faint red fill. */
+.vchip {
+  font: inherit; text-align: left; color: inherit;
+  cursor: pointer;
+  transition: border-color .3s var(--ease-premium),
+              background-color .3s var(--ease-premium),
+              transform .2s var(--ease-premium);
+}
+.vchip:hover { border-color: rgba(228,5,33,0.45); background: rgba(228,5,33,0.04); }
+.vchip:active { transform: scale(0.97); }
+.vchip:focus-visible { outline: 2px solid #E40521; outline-offset: 2px; }
+.vchip[aria-pressed="true"] {
+  border-color: #E40521;
+  background: rgba(228,5,33,0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.07);
+}
+.vchip span { font-variant-numeric: tabular-nums; }
+.vchip-tag {
+  font-style: normal;
+  margin-top: 5px;
+  align-self: flex-start;
+  padding: 1px 6px;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #fff;
+  background: rgba(228,5,33,0.85);
+}
+.vchip[aria-pressed="true"] b { color: #fff; }
+@media (prefers-reduced-motion: reduce) {
+  .vchip { transition: none; }
+  .vchip:active { transform: none; }
+}
+
+/* Price swap pulse on variant change (cars page) */
+@keyframes price-swap {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.price-swap { animation: price-swap .35s var(--ease-premium); }
+@media (prefers-reduced-motion: reduce) {
+  .price-swap { animation: none; }
+}
+
+/* Model quick filters (cars page) */
+.fchip {
+  font: inherit; cursor: pointer;
+  padding: 8px 16px;
+  font-size: 13.5px; color: rgba(255,255,255,0.78);
+  border: 1px solid rgba(255,255,255,0.09);
+  background: rgba(255,255,255,0.02);
+  transition: border-color .3s var(--ease-premium),
+              background-color .3s var(--ease-premium),
+              color .3s var(--ease-premium);
+}
+.fchip:hover { border-color: rgba(228,5,33,0.45); color: #fff; }
+.fchip:focus-visible { outline: 2px solid #E40521; outline-offset: 2px; }
+.fchip[aria-pressed="true"] { border-color: #E40521; background: rgba(228,5,33,0.08); color: #fff; }
+.acc-item.is-filtered { display: none; }
+
+/* Hakim's note: the personal-advice moment, red-tinted so it reads as his voice */
+.hakim-note {
+  background: rgba(228,5,33,0.06);
+  border: 1px solid rgba(228,5,33,0.30);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* Buyer summary: slim icon row (cars page expanded cards) */
+.sum-item { display: flex; gap: 12px; align-items: flex-start; }
+.sum-item > .material-symbols-outlined { font-size: 20px; color: #E40521; margin-top: 1px; }
+.sum-k {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.55);
+}
+.sum-v { margin-top: 4px; font-size: 14.5px; line-height: 1.55; color: rgba(255,255,255,0.78); }
+
+/* Hakim's note: slim quote bar */
+.hn-quote {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 0.6;
+  color: #E40521;
+  transform: translateY(6px);
+}
+
+/* Decision row = CSS grid: [Selected | guidance | View-detailed-specs].
+   display:contents makes the toggle + strip direct grid items, so the toggle is
+   pinned to column 3 (top-right, same line as Selected) and the spec strip spans
+   the full width on its own row below. Position is identical open vs closed, so
+   the toggle never moves in any direction. */
+.spec-row {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 20px;
+  row-gap: 14px;
+}
+/* Toggle is pinned to the top-right of the row, so it holds the exact same spot
+   whether the drawer is open or closed. It cannot shift. The Selected line keeps
+   clear of it via padding; the strip drops to a full-width line below only when
+   the drawer is open. */
+.spec-details { display: block; }
+.spec-details summary { position: absolute; top: 0; right: 0; margin: 0; }
+.spec-details[open] { flex-basis: 100%; }
+.spec-details .spec-strip { width: 100%; }
+.spec-row > p:last-of-type { padding-right: 150px; }
+@media (max-width: 767px) {
+  .spec-details summary { position: static; }
+  .spec-details[open] { flex-basis: auto; }
+  .spec-row > p:last-of-type { padding-right: 0; }
+}
+.spec-details summary {
+  cursor: pointer;
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  transition: color .3s var(--ease-premium);
+}
+.spec-details summary::-webkit-details-marker { display: none; }
+.spec-details summary:hover { color: #fff; }
+.spec-details summary .material-symbols-outlined { font-size: 16px; transition: transform .4s var(--ease-premium); }
+.spec-details[open] summary .material-symbols-outlined { transform: rotate(180deg); }
+.spec-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.09);
+}
+.spec-cell {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 12px 14px;
+  background: #0B0D11;
+}
+.spec-cell > .material-symbols-outlined { font-size: 19px; color: #E40521; margin-top: 1px; }
+.spec-k { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.55); }
+.spec-v { display: block; margin-top: 3px; font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.78); }
+@media (max-width: 767px) {
+  .spec-strip { grid-template-columns: 1fr 1fr; }
+}
+@keyframes spec-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+.spec-details[open] .spec-strip { animation: spec-in .35s var(--ease-premium); }
+@media (prefers-reduced-motion: reduce) {
+  .spec-details[open] .spec-strip { animation: none; }
+  .spec-details summary .material-symbols-outlined { transition: none; }
+}
+
+/* Visual highlights: 2-3 compact strength-matched tiles per expanded card.
+   Fallback = model studio thumbnail (img onerror) until vh-<model>-N.jpg exist. */
+.vh-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: stretch; }
+.vh-tile { margin: 0; display: flex; flex-direction: column; }
+/* Caption fills leftover height so all tiles end at the same baseline */
+.vh-tile figcaption { flex: 1 1 auto; }
+.vh-img {
+  display: block;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.09);
+}
+.vh-img img {
+  display: block;
+  width: 100%; height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease-premium);
+}
+.vh-tile:hover .vh-img img { transform: scale(1.04); }
+.vh-tile figcaption {
+  display: flex; align-items: center; gap: 7px;
+  border: 1px solid rgba(255,255,255,0.09); border-top: 0;
+  padding: 9px 12px;
+  font-size: 12.5px; color: rgba(255,255,255,0.72);
+}
+.vh-tile figcaption .material-symbols-outlined { font-size: 15px; color: #E40521; }
+/* Buyer-summary picture cards: caption holds a small key + value (stacked) */
+.vh-tile--sum figcaption { align-items: flex-start; }
+.vh-tile--sum figcaption > .material-symbols-outlined { margin-top: 2px; }
+.vh-cap { display: flex; flex-direction: column; gap: 1px; }
+.vh-cap-k { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.5); font-weight: 600; }
+.vh-cap-v { font-size: 12.5px; line-height: 1.4; color: rgba(255,255,255,0.85); }
+
+/* Placeholder tile: icon card until the real highlight image exists */
+.vh-ph-card { display: none; }
+.vh-ph .vh-img { display: none; }
+.vh-ph .vh-ph-card {
+  display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 16 / 10;
+  border: 1px solid rgba(255,255,255,0.09);
+  background: rgba(255,255,255,0.02);
+}
+.vh-ph .vh-ph-card .material-symbols-outlined { font-size: 30px; color: rgba(228,5,33,0.75); }
+/* Mobile: one large highlight card at a time, next card peeking,
+   swipe carousel with dots (dots injected by site.js). */
+.vh-dots { display: none; }
+@media (max-width: 767px) {
+  .vh-row {
+    display: flex; gap: 12px;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin-right: -20px; padding-right: 20px;
+  }
+  .vh-row::-webkit-scrollbar { display: none; }
+  .vh-tile { flex: 0 0 84%; scroll-snap-align: start; }
+  /* readable captions on the big card */
+  .vh-tile figcaption { padding: 12px 14px; }
+  .vh-cap-k { font-size: 11px; }
+  .vh-cap-v { font-size: 14.5px; line-height: 1.45; }
+  .vh-tile--sum figcaption .material-symbols-outlined { font-size: 17px; }
+  .vh-dots {
+    display: flex; justify-content: center; gap: 7px;
+    margin-top: 12px;
+  }
+  .vh-dots span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.22);
+    transition: background-color .3s var(--ease-premium), transform .3s var(--ease-premium);
+  }
+  .vh-dots span.on { background: #E40521; transform: scale(1.25); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vh-img img { transition: none; }
+  .vh-tile:hover .vh-img img { transform: none; }
+}
+
+/* Category chips in collapsed heads */
+.cat-chip {
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.55);
+  border: 1px solid rgba(255,255,255,0.14);
+}
+
+/* ---------- Cars page mobile (<768): full-bleed card heads ----------
+   Image on top, title + price below, square chevron badge bottom-right.
+   Tablet/desktop (>=768) keep the row layout — do not touch. */
+@media (max-width: 767px) {
+  .acc-head { grid-template-columns: 1fr; gap: 0; padding: 0; position: relative; }
+  .acc-head > .img-frame { width: 100%; aspect-ratio: 16 / 9; }
+  .acc-head > .min-w-0 { padding: 16px 56px 18px 16px; }
+  .acc-head > span:last-child {
+    position: absolute; right: 12px; bottom: 16px;
+    width: 34px; height: 34px;
+    align-items: center; justify-content: center;
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.03);
+  }
+  .vchip { flex: 1 1 calc(50% - 6px); }
+}
+
+/* Advisor trust chips */
+.tchip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(255,255,255,0.09);
+  background: rgba(255,255,255,0.02);
+  padding: 12px 14px;
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.78);
+}
+.tchip .material-symbols-outlined { font-size: 17px; color: #E40521; }
+
+/* Hero sits behind the sticky nav (nav takes 64px of flow, which left a bare
+   black strip above the hero shader). Pull the section up, pad content back
+   down — canvas (inset 0) now reaches the top edge; nav stays above (z-70). */
+[data-section="hero"] { margin-top: -64px; padding-top: 64px; }
+
+/* ---------- GradualBlur (vanilla port, assets/gradual-blur.js) ----------
+   Fixed viewport-bottom blur stack. Fallback tint where backdrop-filter
+   is unsupported. */
+.gradual-blur { isolation: isolate; }
+@supports not (backdrop-filter: blur(1px)) {
+  .gradual-blur-inner > div { background: rgba(0,0,0,0.3); opacity: 0.5; }
+}
+
+/* ---------- Contact: compact advisor info card + mobile form spacing ----------
+   Info card = short glass card (avatar, name/role, area, reply-time with a
+   soft green "online" dot). Mobile: taller tap-friendly fields, wider gaps,
+   extra bottom padding so the sticky WhatsApp bar never covers the submit. */
+.contact-info {
+  display: flex; flex-direction: column; gap: 16px;
+  padding: 20px 22px;
+  background: rgba(11,13,17,0.55);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 0 38px -20px rgba(228,5,33,0.4);
+  max-width: 420px;
+}
+.contact-info-head { display: flex; align-items: center; gap: 13px; }
+.contact-avatar {
+  flex: none; width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border: 1px solid rgba(228,5,33,0.45);
+}
+.contact-avatar .material-symbols-outlined { font-size: 22px; color: #E40521; }
+.contact-name { font-family: 'Hanken Grotesk', sans-serif; font-weight: 700; color: #fff; font-size: 16px; }
+.contact-role { margin-top: 2px; font-size: 13px; color: rgba(255,255,255,0.5); }
+.contact-meta { display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: rgba(255,255,255,0.6); }
+.contact-meta p { display: flex; align-items: center; gap: 8px; }
+.contact-meta .material-symbols-outlined { font-size: 16px; color: #E40521; }
+.contact-dot {
+  flex: none; width: 7px; height: 7px; margin: 0 4px 0 5px;
+  border-radius: 999px; background: #4ade80;
+  box-shadow: 0 0 8px rgba(74,222,128,0.6);
+}
+@media (max-width: 767px) {
+  [data-section="contact"].section-pad { padding-bottom: 132px; }
+  #lead-form { padding: 26px 20px; }
+  /* Wider rhythm between form groups (overrides the space-y-5 utility) */
+  #lead-form > :not([hidden]) ~ :not([hidden]) { margin-top: 26px; }
+  /* Taller tap targets; 16px font stops iOS zoom-on-focus */
+  #contact .field { min-height: 52px; font-size: 16px; }
+  #lead-form textarea.field { min-height: 120px; }
+}
+
+/* ---------- Loan calculator: stacked groups (mobile-first) ----------
+   Three glass groups — Car details, Loan setup, Your estimate — with red
+   icon badges. Mobile: single column with breathing room; the estimate
+   group is the hero (big RM figure, compact breakdown, one red CTA,
+   disclaimer last). Desktop (>=768): inputs left, estimate right. */
+.calc-wrap { display: flex; flex-direction: column; gap: 20px; }
+.calc-inputs { display: flex; flex-direction: column; gap: 20px; }
+.calc-group {
+  display: flex; flex-direction: column; gap: 18px;
+  padding: 24px 22px;
+  background: rgba(11,13,17,0.55);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.calc-group-head { display: flex; align-items: center; gap: 11px; }
+.calc-badge {
+  flex: none; width: 38px; height: 38px;
+  display: grid; place-items: center;
+  border: 1px solid rgba(228,5,33,0.45);
+}
+.calc-badge .material-symbols-outlined { font-size: 20px; color: #E40521; }
+.calc-group-title {
+  font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.55);
+}
+/* Estimate group = hero */
+.calc-result {
+  border-color: rgba(228,5,33,0.30);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), 0 0 44px -18px rgba(228,5,33,0.45);
+}
+.calc-out-label {
+  display: block;
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.45);
+}
+.calc-out-amount {
+  margin-top: 8px;
+  font-family: 'Hanken Grotesk', sans-serif; font-weight: 800;
+  color: #fff; line-height: 1;
+  font-size: clamp(2.6rem, 9vw, 3.4rem);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.calc-out-permo { margin-left: 8px; font-size: 1rem; font-weight: 600; color: rgba(255,255,255,0.45); letter-spacing: 0; }
+.calc-out-note { margin-top: 8px; font-size: 12.5px; color: rgba(255,255,255,0.45); }
+.calc-break { display: flex; flex-direction: column; }
+.calc-break-row {
+  display: flex; justify-content: space-between; gap: 12px;
+  padding: 11px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 14px;
+}
+.calc-break-row dt { color: rgba(255,255,255,0.5); }
+.calc-break-row dd { color: rgba(255,255,255,0.78); }
+.calc-cta { width: 100%; justify-content: center; }
+.calc-disclaimer { font-size: 11.5px; line-height: 1.6; color: rgba(255,255,255,0.46); }
+@media (max-width: 767px) {
+  /* Sticky WhatsApp bar must never crowd the estimate CTA */
+  [data-section="calculator"].section-pad { padding-bottom: 132px; }
+}
+@media (min-width: 768px) {
+  .calc-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+  .calc-group { padding: 28px 28px; }
+  .calc-cta { width: auto; align-self: flex-start; }
+}
+
+/* ---------- Section refinements: Why-Hakim cells + buyer-journey rail ---------- */
+
+/* ---------- Why-hakim: mobile scroll cue (<768px) ----------
+   The 6 .why-cell cards now show on mobile (grid flipped on at line ~683);
+   this is just a small, subtle cue under the intro paragraph. No sticky
+   stack, no pinned scroll, no big spacers. Desktop untouched. */
+.why-cue {
+  display: flex; align-items: center; gap: 6px;
+  margin-top: 18px;
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  color: rgba(255,255,255,0.42);
+}
+.why-cue-chev { font-size: 16px; line-height: 1; color: #E40521; }
+
+/* ---------- Why-hakim: desktop 3-card cinematic row (>=768px) ----------
+   Dark glass over the section's shader streaks (content z-10, canvas z-1),
+   thin red-boxed icon top-left, giant faint number bottom-right, first card
+   reads active (red keyline + glow). Sharp 0px corners. Dots decorative. */
+.whyd {
+  display: flex; gap: 24px;
+  overflow-x: auto;
+  /* No scroll-snap: free, natural scroll — snap kept "sticking" mid-track */
+  scrollbar-width: none;
+  cursor: grab;
+}
+.whyd::-webkit-scrollbar { display: none; }
+/* Edge fade: cut-off cards dissolve into the section background.
+   JS toggles .fade-l / .fade-r so a fully shown first/last card never fades:
+   at rest no left fade; at track end no right fade. */
+.whyd.fade-l {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 48px);
+          mask-image: linear-gradient(90deg, transparent 0, #000 48px);
+}
+.whyd.fade-r {
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 48px), transparent 100%);
+          mask-image: linear-gradient(90deg, #000 calc(100% - 48px), transparent 100%);
+}
+.whyd.fade-l.fade-r {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);
+}
+.whyd.is-dragging { cursor: grabbing; user-select: none; }
+.whyd-card {
+  position: relative; overflow: hidden;
+  /* Exactly 3 cards per view; drag reveals the other 3 */
+  flex: 0 0 calc((100% - 48px) / 3); min-width: 300px;
+  min-height: 296px;
+  padding: 28px 30px;
+  /* OPAQUE surface — mirrors the mobile .why-cf-card recipe exactly
+     (no translucency / backdrop blur on this section's cards). */
+  background: linear-gradient(165deg, #161a21 0%, #0c0f14 58%, #08090d 100%);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.07),
+    0 34px 70px -30px rgba(0,0,0,0.85);
+}
+/* Same red radial corner glow as mobile cards */
+.whyd-card::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(130% 90% at 100% 0%, rgba(228,5,33,0.22), transparent 55%);
+}
+/* Hover: red keyline grows across the top, border + glow fade in */
+.whyd-card { transition: border-color .4s var(--ease-premium), box-shadow .4s var(--ease-premium); }
+.whyd-card::after {
+  content: ""; position: absolute; top: 0; left: 0; height: 2px; width: 0; z-index: 2;
+  background: #E40521; transition: width .45s var(--ease-premium);
+}
+.whyd-card:hover {
+  border-color: rgba(228,5,33,0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.07),
+    0 34px 70px -30px rgba(0,0,0,0.85),
+    0 0 46px -16px rgba(228,5,33,0.5);
+}
+.whyd-card:hover::after { width: 100%; }
+@media (prefers-reduced-motion: reduce) {
+  .whyd-card, .whyd-card::after { transition: none; }
+}
+.whyd-icon {
+  position: relative; z-index: 1;
+  display: grid; place-items: center;
+  width: 56px; height: 56px;
+  border: 1px solid rgba(228,5,33,0.45);
+}
+.whyd-icon .material-symbols-outlined { font-size: 26px; color: #E40521; }
+.whyd-title {
+  position: relative; z-index: 1;
+  margin-top: 34px;
+  font-family: 'Hanken Grotesk', sans-serif; font-weight: 700;
+  color: #fff; font-size: 22px; letter-spacing: -0.01em;
+}
+.whyd-text { position: relative; z-index: 1; margin-top: 10px; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.6); max-width: 30ch; }
+.whyd-num {
+  position: absolute; right: 16px; bottom: -22px; z-index: 0;
+  font-family: 'Hanken Grotesk', sans-serif; font-weight: 800;
+  font-size: 118px; line-height: 1; letter-spacing: -0.04em;
+  color: rgba(228,5,33,0.12);
+  pointer-events: none; user-select: none;
+}
+.whyd-dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+.whyd-dot {
+  width: 44px; height: 44px; padding: 0; border: 0; border-radius: 999px;
+  background: transparent; cursor: pointer; position: relative;
+  transition: width .3s var(--ease-premium), background-color .3s var(--ease-premium);
+}
+.whyd-dot::before { content:""; position:absolute; width:7px; height:7px; border-radius:999px; background:rgba(255,255,255,0.22); inset:50%; transform:translate(-50%,-50%); }
+.whyd-dot.is-active::before { width:22px; background:#E40521; }
+
+/* ---------- Why-hakim: mobile 3D coverflow of the 6 reason cards (<768px) ----------
+   Desktop 6-cell grid is hidden on mobile; the same reasons become a swipeable
+   coverflow (native scroll-snap; 3D rotateY/scale/translateZ + opacity driven
+   per-slide in site.js by distance from the track centre). Sharp 0px corners,
+   red accent, animated dots. Reduced-motion: flat snap carousel, no 3D. */
+@media (max-width: 767px) {
+  .why-coverflow { margin-top: 22px; perspective: 1200px; }
+  .why-cf-track {
+    display: flex;
+    padding: 26px 14vw 6px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .why-cf-track::-webkit-scrollbar { display: none; }
+  .why-cf-slide {
+    flex: 0 0 72vw;
+    padding: 0 7px;
+    scroll-snap-align: center;
+    transform-style: preserve-3d;
+  }
+  .why-cf-card {
+    position: relative;
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 26px 24px;
+    overflow: hidden;
+    background: linear-gradient(165deg, #161a21 0%, #0c0f14 58%, #08090d 100%);
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.07),
+      0 34px 70px -30px rgba(0,0,0,0.85);
+    transform-origin: center center;
+    will-change: transform, opacity;
+  }
+  .why-cf-card::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background: radial-gradient(130% 90% at 100% 0%, rgba(228,5,33,0.22), transparent 55%);
+  }
+  .why-cf-num {
+    position: absolute; right: 10px; bottom: -18px; z-index: 0;
+    font-family: 'Hanken Grotesk', sans-serif; font-weight: 800;
+    font-size: 128px; line-height: 1; letter-spacing: -0.04em;
+    color: rgba(228,5,33,0.12);
+    font-variant-numeric: tabular-nums;
+  }
+  .why-cf-icon {
+    position: relative; z-index: 1;
+    width: 48px; height: 48px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(228,5,33,0.45);
+    color: #E40521;
+  }
+  .why-cf-icon .material-symbols-outlined { font-size: 26px; }
+  .why-cf-card h3 {
+    position: relative; z-index: 1; margin-top: 22px;
+    font-family: 'Hanken Grotesk', sans-serif; font-weight: 800;
+    font-size: 21px; line-height: 1.2; letter-spacing: -0.01em; color: #fff;
+  }
+  .why-cf-card p {
+    position: relative; z-index: 1; margin-top: 12px;
+    font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.62);
+  }
+  .why-cf-dots { display: flex; justify-content: center; gap: 8px; margin-top: 8px; }
+  .why-cf-dot {
+    width: 44px; height: 44px; padding: 0; border: 0; border-radius: 999px;
+    background: transparent; cursor: pointer; position: relative;
+    transition: width .3s var(--ease-premium), background-color .3s var(--ease-premium);
+  }
+  .why-cf-dot::before { content:""; position:absolute; width:7px; height:7px; border-radius:999px; background:rgba(255,255,255,0.22); inset:50%; transform:translate(-50%,-50%); }
+  .why-cf-dot.is-active::before { width:22px; background:#E40521; }
+}
+
+
+/* ---------- Buyer journey: swipe-card carousel ----------
+   Mobile (<768): horizontal snap carousel — card 1 near-full width, card 2
+   peeks ~40-70px from the right, pagination dots below (JS-synced).
+   Desktop (>=768): plain 3-card row, no snap, dots hidden. No timeline. */
+.jcar {
+  display: flex; gap: 14px;
+  list-style: none; margin: 0; padding: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  /* bleed to the right screen edge so the peeking card isn't clipped */
+  margin-right: -20px; padding-right: 20px;
+}
+.jcar::-webkit-scrollbar { display: none; }
+
+.jcar-card {
+  position: relative; flex: 0 0 auto;
+  width: min(calc(100% - 48px), 330px);
+  scroll-snap-align: start;
+  display: flex; flex-direction: column;
+  background: rgba(14,14,16,0.55);
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 34px -16px rgba(228,5,33,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+/* Card 1 = hero visual card: stronger red presence */
+.jcar-card--visual {
+  box-shadow: 0 0 42px -14px rgba(228,5,33,0.42), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+/* Red step badge — rounded square, top-left */
+.jcar-badge {
+  position: absolute; top: 16px; left: 16px; z-index: 2;
+  min-width: 44px; height: 34px; padding: 0 10px;
+  display: inline-grid; place-items: center;
+  background: linear-gradient(180deg, #f21730, #C1041C);
+  color: #fff; border-radius: 10px;
+  font-family: 'Hanken Grotesk', sans-serif; font-weight: 700;
+  font-size: 14px; font-variant-numeric: tabular-nums;
+  box-shadow: 0 4px 16px -4px rgba(228,5,33,0.6), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+/* Card 1 media: car on a dark red-tinted radial glow */
+.jcar-media {
+  position: relative; flex: none;
+  height: 172px;
+  background: #0c0c0e;
+}
+.jcar-media img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 62%;
+}
+/* Cards 2/3: portrait photos — keep faces in frame, not the 62% car crop */
+.jcar-card:not(.jcar-card--visual) .jcar-media img { object-position: center 22%; }
+/* Blend photo bottom into the card body + soft red wash, no hard edge */
+.jcar-media::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(14,14,16,0.25) 0%, transparent 30%, transparent 55%, rgba(14,14,16,0.92) 100%),
+    radial-gradient(120% 80% at 50% 85%, rgba(228,5,33,0.16), transparent 65%);
+}
+
+.jcar-body { display: flex; flex-direction: column; align-items: flex-start; flex: 1 1 auto; padding: 18px 20px 20px; }
+/* Non-visual cards: clear the badge row */
+
+.jcar-icon {
+  flex: none; width: 44px; height: 44px; margin-bottom: 14px;
+  position: relative; z-index: 2; margin-top: -40px;
+  display: grid; place-items: center; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18); background: rgba(20,20,22,0.95);
+}
+.jcar-icon .material-symbols-outlined { font-size: 21px; color: #E40521; }
+
+.jcar-title { font-family: 'Hanken Grotesk', sans-serif; font-weight: 700; color: #fff; font-size: 19px; letter-spacing: -0.01em; }
+.jcar-text { margin-top: 6px; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.62); }
+.jcar-cta {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 14px;
+  font-size: 13.5px; font-weight: 600; color: #E40521;
+  transition: color .3s var(--ease-premium);
+}
+.jcar-cta .material-symbols-outlined { font-size: 16px; transition: transform .3s var(--ease-premium); }
+.jcar-cta:hover { color: #ff2740; }
+.jcar-cta:hover .material-symbols-outlined { transform: translateX(3px); }
+
+/* Pagination dots (mobile only) */
+.jcar-dots { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+.jcar-dot {
+  width: 7px; height: 7px; padding: 0; border: 0; border-radius: 999px;
+  background: rgba(255,255,255,0.22); cursor: pointer;
+  transition: width .3s var(--ease-premium), background-color .3s var(--ease-premium);
+}
+.jcar-dot.is-active { width: 22px; background: #E40521; }
+
+@media (max-width: 767px) {
+  /* Clear breathing room below the floating nav pills (they end ~52px down),
+     and enough bottom room that the sticky WhatsApp bar never crowds the dots. */
+  [data-section="how"].section-pad { padding-top: 132px; padding-bottom: 132px; }
+  .jcar-card { min-height: 380px; }
+}
+
+/* --- Desktop: 3 cards in a row, no carousel --- */
+@media (min-width: 768px) {
+  .jcar {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    overflow: visible; scroll-snap-type: none;
+    margin-right: 0; padding-right: 0;
+  }
+  .jcar-card { width: auto; }
+  .jcar-media { height: 190px; }
+  .jcar-dots { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jcar { scroll-behavior: auto; }
+  .jcar-cta .material-symbols-outlined, .jcar-dot { transition: none; }
+}
+
+/* ---------- Scroll progress ---------- */
+#progress {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: #E40521;
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 60;
+}
+
+/* ---------- Scroll reveal ----------
+   Gated on html.js so content is fully visible without JS. */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(3px);
+  transition:
+    opacity .85s var(--ease-premium),
+    transform .85s var(--ease-premium),
+    filter .85s var(--ease-premium);
+  transition-delay: var(--rd, 0ms);
+}
+html.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* ---------- Sticky mobile CTA spacing ---------- */
+@media (max-width: 767px) {
+  body { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  html.js [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+  .btn, .btn .material-symbols-outlined, .model-card, .img-frame img,
+  .cta-chevron, details .faq-icon, .acc-item, .acc-chevron { transition: none !important; }
+  .faq-item[open] .faq-a { animation: none !important; }
+  html.js .acc-body, html.js .acc-body > .acc-inner { transition: none !important; }
+  .btn:active { transform: none; }
+  .model-card:hover { transform: none; }
+  .img-hover:hover .img-frame img { transform: none; }
+  .acc-head:hover .img-frame img { transform: none; }
+}
+
+.section-pad { padding-top: clamp(88px, 11vw, 148px); padding-bottom: clamp(88px, 11vw, 148px); }
+[data-section="faq"].section-pad { padding-top: clamp(88px, 9vw, 120px); padding-bottom: clamp(88px, 9vw, 120px); }
+
+/* Mobile: extra tail room where the last CTA/dots sat ~65px from the section
+   end — the 53px sticky WhatsApp bar was crowding them at scroll boundaries. */
+@media (max-width: 767px) {
+  [data-section="advisor"].section-pad,
+  [data-section="lineup"].section-pad,
+  [data-section="why"].section-pad { padding-bottom: 120px; }
+}
+
+/* ---------- FloatingLines shader field ----------
+   Per-section WebGL FloatingLines shader (assets/floating-lines.js) on
+   .floating-lines-container inside the [data-thread-section] hosts.
+   isolation:isolate gives each host its own stacking context so the
+   canvas (z-1) sits under the content (z-10). Screen blend drops the
+   canvas black; only the red lines overlay the dark section. Dimming is
+   done with container opacity so the line cores stay crisp. The line is
+   a BACKGROUND effect — content panels (.card, opaque banners, bg-night
+   cells) must stay opaque so it never shows through them. */
+[data-thread-section] { isolation: isolate; }
+
+.floating-lines-container {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.fl-hero { opacity: 0.55; }
+.fl-mid  { opacity: 0.4; }
+
+@media (max-width: 767px) {
+  .fl-hero { opacity: 0.52; }
+  .fl-mid  { opacity: 0.3; }
+}
+
+/* ---------- Cars page: two-variant comparison (#compare) ---------- */
+/* Shared charcoal band for the two "support" sections in the page rhythm
+   (help-choosing strip + compare). Black hero -> GREY help -> black range ->
+   GREY compare -> black final CTA. */
+.band-grey { background: #191d25; }
+
+/* Premium glass panel with a soft red glow, so the tool reads as a feature
+   rather than a plain form. The SECTION itself is a clearly-lighter charcoal
+   band in the page rhythm; the panel sits inside and is DARKER than the band,
+   so the grey clearly reads around it. */
+.compare-section { position: relative; background: #191d25; }
+/* A touch more breathing room than a standard band, so it reads as a
+   deliberate zone, plus a firmer edge into the black final-CTA section. */
+.compare-section.section-pad { padding-top: clamp(104px, 13vw, 172px); padding-bottom: clamp(104px, 13vw, 172px); }
+.compare-section { box-shadow: inset 0 -1px 0 rgba(0,0,0,0.5); }
+.cmp-panel { position: relative; }
+.cmp-glow {
+  position: absolute; z-index: 0; pointer-events: none;
+  left: 50%; top: 8%; width: 78%; height: 70%;
+  transform: translateX(-50%);
+  background: radial-gradient(60% 60% at 50% 30%, rgba(228,5,33,0.20), transparent 70%);
+  filter: blur(30px);
+}
+.cmp-panel-inner {
+  position: relative; z-index: 1;
+  background: rgba(7,8,10,0.66);
+  border: 1px solid rgba(255,255,255,0.09);
+  box-shadow: 0 50px 100px -50px rgba(0,0,0,0.95),
+              inset 0 1px 0 rgba(255,255,255,0.05),
+              0 0 70px -28px rgba(228,5,33,0.30);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  padding: 32px;
+}
+@media (min-width: 768px) { .cmp-panel-inner { padding: 48px 52px; } }
+@supports not (backdrop-filter: blur(4px)) { .cmp-panel-inner { background: #0B0D11; } }
+
+.cmp-slots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+/* Selector slots read as comparison cards, each with a red index badge. */
+.cmp-slot {
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.03);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color .35s var(--ease-premium), background-color .35s var(--ease-premium);
+}
+.cmp-slot.is-filled { border-color: rgba(228,5,33,0.40); background: rgba(228,5,33,0.05); }
+.cmp-slot-head { display: flex; align-items: center; justify-content: space-between; }
+.cmp-slot-label {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.6);
+}
+.cmp-slot-label::before {
+  content: attr(data-n);
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px;
+  font-family: 'Hanken Grotesk', sans-serif; font-weight: 700; font-size: 12px;
+  color: #fff; background: rgba(228,5,33,0.85);
+  letter-spacing: 0;
+}
+.cmp-clear {
+  font: inherit; font-size: 12px; cursor: pointer;
+  color: rgba(255,255,255,0.55); background: none; border: 0; padding: 2px 4px;
+  transition: color .3s var(--ease-premium);
+}
+.cmp-clear:hover { color: #E40521; }
+.cmp-model, .cmp-variant { cursor: pointer; }
+.cmp-variant:disabled { opacity: 0.4; cursor: not-allowed; }
+.cmp-warn {
+  margin: 0; font-size: 12.5px; line-height: 1.5; color: #ff6b7d;
+  opacity: 0; transform: translateY(-4px);
+  transition: opacity .3s var(--ease-premium), transform .3s var(--ease-premium);
+}
+.cmp-warn.show { opacity: 1; transform: none; }
+
+/* Primary Compare button: soft/disabled until both cars are chosen, then red. */
+.cmp-action { margin-top: 22px; }
+.cmp-compare {
+  width: 100%;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.5);
+  cursor: not-allowed;
+  transition: background-color .35s var(--ease-premium), color .35s var(--ease-premium),
+              border-color .35s var(--ease-premium), box-shadow .35s var(--ease-premium);
+}
+.cmp-compare .material-symbols-outlined { transition: transform .4s var(--ease-premium); }
+.cmp-compare.is-ready {
+  border-color: #E40521;
+  background: #E40521;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 18px 40px -20px rgba(228,5,33,0.7);
+}
+.cmp-compare.is-ready:hover { background: var(--red-dark, #B80016); }
+.cmp-compare.is-ready:hover .material-symbols-outlined { transform: translateX(3px); }
+@media (min-width: 640px) { .cmp-action { display: flex; } .cmp-compare { width: auto; min-width: 260px; } }
+@media (prefers-reduced-motion: reduce) {
+  .cmp-compare, .cmp-compare .material-symbols-outlined { transition: none; }
+}
+
+.cmp-source { margin-top: 20px; font-size: 12px; line-height: 1.6; color: rgba(255,255,255,0.5); max-width: 70ch; }
+
+/* Compare heading kicker — makes the section title read louder than a body block */
+.cmp-kicker {
+  display: inline-flex; align-items: center; gap: 9px;
+  margin: 0 0 12px; padding-left: 20px; position: relative;
+  font-size: 12px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.18em; color: #E40521;
+}
+.cmp-kicker::before {
+  content: ""; position: absolute; left: 0; top: 50%;
+  width: 14px; height: 2px; background: #E40521; transform: translateY(-50%);
+}
+
+/* --- Comparison RESULT state: the payoff moment --- */
+.cmp-result { }
+@keyframes cmp-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+.cmp-result.cmp-revealed .cmp-table-wrap { animation: cmp-in .55s var(--ease-premium); }
+@media (prefers-reduced-motion: reduce) {
+  .cmp-result.cmp-revealed .cmp-table-wrap { animation: none; }
+}
+
+.cmp-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.cmp-table {
+  width: 100%; border-collapse: collapse; margin-top: 28px;
+  border: 1px solid rgba(255,255,255,0.09);
+  background: rgba(7,8,9,0.5);
+}
+.cmp-table th, .cmp-table td {
+  text-align: left; padding: 12px 16px; vertical-align: top;
+  font-size: 14px; line-height: 1.5;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+/* Header: thumbnail, model, variant, price per column */
+.cmp-table thead th {
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(228,5,33,0.35);
+  vertical-align: bottom;
+}
+.cmpr-head { padding: 18px 16px 14px; }
+.cmpr-thumb {
+  display: block; width: 132px; max-width: 100%;
+  border: 1px solid rgba(255,255,255,0.10);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.cmpr-thumb img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.cmpr-name {
+  display: block;
+  font-family: 'Hanken Grotesk', sans-serif; font-weight: 700;
+  color: #fff; font-size: 16px; line-height: 1.3;
+}
+.cmpr-variant { display: block; margin-top: 2px; font-size: 12.5px; font-weight: 400; color: rgba(255,255,255,0.6); }
+.cmpr-price {
+  display: block; margin-top: 6px;
+  font-family: 'Hanken Grotesk', sans-serif; font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #fff; font-size: 15px;
+}
+.cmp-table td { color: rgba(255,255,255,0.82); }
+.cmp-rowhead { color: rgba(255,255,255,0.55) !important; font-weight: 500; white-space: nowrap; }
+/* Group headers: red icon + title, firmer band */
+.cmp-group th {
+  font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.16em;
+  color: #E40521;
+  background: linear-gradient(90deg, rgba(228,5,33,0.12), rgba(228,5,33,0.03));
+  border-bottom: 1px solid rgba(228,5,33,0.22);
+  padding-top: 16px; padding-bottom: 10px; font-weight: 700;
+}
+.cmp-group th .material-symbols-outlined {
+  font-size: 16px; vertical-align: -3px; margin-right: 8px; color: #E40521;
+}
+.cmp-table tbody tr td:first-of-type { border-left: 1px solid rgba(255,255,255,0.05); }
+/* Subtle better-value marker (only on strictly comparable numeric rows) */
+.cmp-table td.cmp-best { background: rgba(228,5,33,0.07); color: #fff; }
+.cmp-table td.cmp-best::after {
+  content: "check"; font-family: 'Material Symbols Outlined';
+  font-size: 14px; color: #E40521; margin-left: 8px; vertical-align: -2px;
+}
+
+@media (max-width: 767px) {
+  .cmp-panel-inner { padding: 22px 18px; }
+  .cmp-slots { grid-template-columns: 1fr; }
+  .cmp-compare { width: 100%; }
+  .cmp-table th, .cmp-table td { padding: 10px 12px; font-size: 13px; }
+  .cmp-rowhead { white-space: normal; }
+  .cmpr-head { padding: 12px 12px 10px; }
+  .cmpr-thumb { width: 100%; }
+  .cmpr-name { font-size: 14px; }
+  .cmpr-price { font-size: 13.5px; }
+}
+
+/* ---------- Motion pass (cars page; vanilla, reduced-motion safe) ---------- */
+
+/* Smooth in-page anchor travel (Browse Honda range, nav anchors). */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* Filter change: remaining cards settle back with a small staggered rise. */
+@keyframes filter-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+.acc-item.filter-in { animation: filter-in .4s var(--ease-premium) both; animation-delay: var(--fd, 0ms); }
+
+/* Collapsed model rows: gentle lift on hover, matching the border warm-up. */
+.acc-item:not(.open) { transition: border-color .45s var(--ease-premium), box-shadow .45s var(--ease-premium), transform .45s var(--ease-premium); }
+.acc-item:not(.open):hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 18px 40px -28px rgba(0,0,0,0.9); }
+
+/* Cars hero: one-shot slow cinematic drift on the backdrop (not a loop, no parallax). */
+@keyframes hero-drift {
+  from { transform: scale(1); }
+  to   { transform: scale(1.045); }
+}
+[data-section="hero"].bg-night .img-frame img { animation: hero-drift 9s var(--ease-premium) forwards; }
+
+/* Compare result: row highlight for scanability. */
+.cmp-table tbody tr:not(.cmp-group) { transition: background-color .25s var(--ease-premium); }
+.cmp-table tbody tr:not(.cmp-group):hover { background: rgba(255,255,255,0.025); }
+
+/* (nav-link underline removed with the old bar navbar; glass pills own hover now) */
+
+@media (prefers-reduced-motion: reduce) {
+  .acc-item.filter-in { animation: none; }
+  .acc-item:not(.open) { transition: border-color .45s var(--ease-premium); }
+  .acc-item:not(.open):hover { transform: none; box-shadow: inset 0 1px 0 rgba(255,255,255,0.06); }
+  [data-section="hero"].bg-night .img-frame img { animation: none; }
+  .cmp-table tbody tr:not(.cmp-group) { transition: none; }
+}
+
+/* ============================================================
+   Popular comparisons strip (cars.html, before #compare)
+   Compact guidance chips — dark glass, thin red keyline accent.
+============================================================ */
+.pc-row {
+  margin-top: 26px;
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+}
+.pc-chip {
+  flex: 0 0 auto;
+  min-width: 236px;
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  padding: 16px 44px 16px 18px;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  color: #fff;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-left: 2px solid rgba(228,5,33,0.55);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  transition: border-color .35s var(--ease-premium),
+              background-color .35s var(--ease-premium);
+}
+.pc-chip:hover,
+.pc-chip:focus-visible {
+  border-color: rgba(228,5,33,0.45);
+  background: rgba(228,5,33,0.05);
+}
+.pc-pair {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 700; font-size: 15.5px; letter-spacing: -0.01em;
+}
+.pc-vs {
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em; color: #E40521; margin: 0 2px;
+}
+.pc-note { font-size: 12.5px; line-height: 1.5; color: rgba(255,255,255,0.55); }
+.pc-arrow {
+  position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+  font-size: 18px; color: rgba(255,255,255,0.35);
+  transition: color .35s var(--ease-premium), transform .35s var(--ease-premium);
+}
+.pc-chip:hover .pc-arrow { color: #E40521; transform: translateY(-50%) translateX(3px); }
+@media (min-width: 768px) {
+  .pc-row { display: grid; grid-template-columns: repeat(3, 1fr); overflow: visible; padding-bottom: 0; }
+  .pc-chip { min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pc-chip, .pc-arrow { transition: none; }
+}
+
+/* Quick takeaway panel above the compare specs table */
+.cmp-takeaway {
+  margin-bottom: 22px;
+  padding: 16px 18px;
+  background: rgba(228,5,33,0.045);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-left: 2px solid rgba(228,5,33,0.6);
+}
+.cmp-takeaway-title {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin: 0 0 8px;
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.16em; color: #E40521;
+}
+.cmp-takeaway-title .material-symbols-outlined { font-size: 16px; }
+.cmp-takeaway ul { margin: 0; padding: 0; list-style: none; }
+.cmp-takeaway li {
+  position: relative; padding-left: 16px;
+  font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,0.78);
+}
+.cmp-takeaway li + li { margin-top: 4px; }
+.cmp-takeaway li::before {
+  content: ""; position: absolute; left: 0; top: 0.72em;
+  width: 7px; height: 1px; background: rgba(228,5,33,0.7);
+}
+
+/* ============================================================
+   Compare result — MOBILE stacked accordions (.cmpm)
+   Desktop keeps the table; mobile hides it and shows this.
+   Markup built by compare.js alongside the table.
+============================================================ */
+.cmpm { display: none; }
+@media (max-width: 767px) {
+  .cmp-result .cmp-table-wrap { display: none; }
+  .cmpm { display: block; }
+  .cmp-result.cmp-revealed .cmpm { animation: cmp-in .55s var(--ease-premium); }
+
+  /* two compact vehicle headers */
+  .cmpm-heads { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .cmpm-heads.one { grid-template-columns: 1fr; }
+  .cmpm-head {
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.03);
+    padding: 12px;
+  }
+  .cmpm-head img {
+    display: block; width: 100%; height: auto;
+    aspect-ratio: 16 / 9; object-fit: cover;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .cmpm-head-name {
+    display: block; margin-top: 10px;
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-weight: 700; font-size: 14.5px; color: #fff; letter-spacing: -0.01em;
+  }
+  .cmpm-head-variant { display: block; margin-top: 1px; font-size: 12.5px; color: rgba(255,255,255,0.6); }
+  .cmpm-head-price {
+    display: block; margin-top: 6px;
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-weight: 700; font-size: 14px; color: #E40521;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* accordion groups */
+  .cmpm-group {
+    margin-top: 10px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.02);
+  }
+  .cmpm-group summary {
+    display: flex; align-items: center; gap: 9px;
+    list-style: none; cursor: pointer;
+    padding: 13px 14px;
+    font-size: 12px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.14em; color: #fff;
+  }
+  .cmpm-group summary::-webkit-details-marker { display: none; }
+  .cmpm-group summary .material-symbols-outlined { font-size: 17px; color: #E40521; }
+  .cmpm-group summary .cmpm-caret {
+    margin-left: auto; color: rgba(255,255,255,0.45);
+    transition: transform .3s var(--ease-premium);
+  }
+  .cmpm-group[open] summary .cmpm-caret { transform: rotate(180deg); }
+  .cmpm-group[open] summary { border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+  /* spec rows: full-width label, two labeled value cells below */
+  .cmpm-row { padding: 12px 14px; }
+  .cmpm-row + .cmpm-row { border-top: 1px solid rgba(255,255,255,0.06); }
+  .cmpm-row-label {
+    display: block;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.5); font-weight: 600;
+  }
+  .cmpm-vals { margin-top: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .cmpm-vals.one { grid-template-columns: 1fr; }
+  .cmpm-val {
+    padding: 9px 11px;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.02);
+  }
+  .cmpm-val-car {
+    display: block; margin-bottom: 3px;
+    font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.45); font-weight: 600;
+  }
+  .cmpm-val-v { display: block; font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.88); }
+  /* subtle winner tint — same visual language as the desktop tick */
+  .cmpm-val.cmpm-best {
+    border-color: rgba(228,5,33,0.35);
+    background: rgba(228,5,33,0.06);
+  }
+  .cmpm-val.cmpm-best .cmpm-val-v { color: #fff; }
+  .cmpm-val.cmpm-best .cmpm-val-v::after {
+    content: "check"; font-family: 'Material Symbols Outlined';
+    font-size: 13px; color: #E40521; margin-left: 6px; vertical-align: -1px;
+  }
+}
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .cmp-result.cmp-revealed .cmpm { animation: none; }
+  .cmpm-group summary .cmpm-caret { transition: none; }
+}
+
+/* ---------- Section glow bridges (desktop + mobile) ----------
+   The clean (bg-coal) sections meet the red (bg-night) sections with a
+   hard tonal cut. A faint red wash at the top edge of each clean section
+   carries the red atmosphere across the seam so sections read connected,
+   not sliced. Very subtle by intent; static paint, no shader, no motion.
+   Sits under the z-10 content, pointer-events off. */
+section[data-section="advisor"]::before,
+section[data-section="calculator"]::before,
+section[data-section="how"]::before,
+section[data-section="faq"]::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 180px;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(70% 120% at 50% 0%, rgba(228, 5, 33, 0.045), transparent 72%),
+    linear-gradient(to bottom, rgba(228, 5, 33, 0.03), transparent);
+}
